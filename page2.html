@@ -182,19 +182,47 @@
     <div class="message">💖Te amei desde o primeiro momento. 
         O momento que ouvi a tua voz, o momento que te vi, o momento que você sorriu, o momento que me abraçou, o momento que me beijou, o momento que me quis, o momento que me teve, o momento que passamos juntos ou seja amo o momento de cada momento que vivemos.💖</div>
     <script>
-        function updateTimer() {
-            const startDate = new Date('2021-12-03T00:00:00');
-            const now = new Date();
-            const diff = now - startDate;
-            
-            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
-            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('timer').innerText = `${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
+         function calcularTempoDecorrido(dataInicial, dataAtual) {
+            let anos = dataAtual.getFullYear() - dataInicial.getFullYear();
+            let meses = dataAtual.getMonth() - dataInicial.getMonth();
+            let dias = dataAtual.getDate() - dataInicial.getDate();
+            let horas = dataAtual.getHours() - dataInicial.getHours();
+            let minutos = dataAtual.getMinutes() - dataInicial.getMinutes();
+            let segundos = dataAtual.getSeconds() - dataInicial.getSeconds();
+
+            // Ajustes para valores negativos
+            if (segundos < 0) {
+                segundos += 60;
+                minutos--;
+            }
+            if (minutos < 0) {
+                minutos += 60;
+                horas--;
+            }
+            if (horas < 0) {
+                horas += 24;
+                dias--;
+            }
+            if (dias < 0) {
+                meses--;
+                dias += new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 0).getDate();
+            }
+            if (meses < 0) {
+                anos--;
+                meses += 12;
+            }
+
+            return { anos, meses, dias, horas, minutos, segundos };
+        }
+
+        function atualizarTempo() {
+            const dataInicial = new Date('2021-12-03T00:00:00');
+            const dataAtual = new Date();
+            const tempoDecorrido = calcularTempoDecorrido(dataInicial, dataAtual);
+
+            document.getElementById('timer').innerText = 
+                `${tempoDecorrido.anos} anos, ${tempoDecorrido.meses} meses, ${tempoDecorrido.dias} dias, ` +
+                `${tempoDecorrido.horas} horas, ${tempoDecorrido.minutos} minutos e ${tempoDecorrido.segundos} segundos.`;
         }
         function createHeart() {
             const heart = document.createElement('div');
@@ -207,8 +235,8 @@
             setTimeout(() => heart.remove(), 5000);
         }
         setInterval(createHeart, 300);
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        setInterval(atualizarTempo, 1000);
+        atualizarTempo();
     </script>
 </body>
 </html>
