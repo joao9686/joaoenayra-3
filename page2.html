@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Amor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;700&display=swap');
+        
+        body {
+            background-color: #87CEEB;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .spotify {
+            max-width: 300px;
+            margin: 20px auto;
+            width: 100%;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            overflow: hidden;
+            width: 100%;
+            margin: auto;
+            position: relative;
+        }
+        .gallery-wrapper {
+    display: flex;
+    animation: slide 30s linear infinite;
+}
+
+    @keyframes slide {
+        0% { transform: translateX(70%); }
+        100% { transform: translateX(-70%); }
+    }
+
+    .gallery img {
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 20px;
+    flex-shrink: 0; /* Impede redimensionamento */
+}
+       
+       
+        .timer {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .message {
+            margin-left: 25%;
+            margin-right: 25%;
+            margin-top: 20px;
+            font-size: 24px;
+            font-family: 'Pacifico', cursive;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+        .heart-rain {
+            position: fixed;
+            top: -1em;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 1;
+            font-size: 24px;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        @media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+    
+    .gallery img {
+        width: 150px;
+        height: 200px;
+    }
+    
+    .message {
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: 16px;
+    }
+    
+    .timer {
+        font-size: 14px;
+    }
+    
+    @keyframes slide {
+        0% { transform: translateX(60%); }
+        100% { transform: translateX(-55%); }
+    }
+}
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    .gallery img {
+        width: 200px;
+        height: 300px;
+    }
+    
+    .message {
+        margin-left: 15%;
+        margin-right: 15%;
+        font-size: 18px;
+    }
+    
+    .timer {
+        font-size: 16px;
+    }
+    
+    .spotify iframe {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+    </style>
+</head>
+<body>
+    
+    <h1>Nosso Amor ❤️</h1>
+    <div class="content">
+        <!-- ... (manter todo o conteúdo existente) ... -->
+    </div>
+    <div class="spotify">
+        <iframe style="border-radius:12px" 
+                src="https://open.spotify.com/embed/track/1p6dBmCdP7xh3OMTYJDZPK?" 
+                width="300" 
+                height="80" 
+                
+                ></iframe>
+    </div>
+    <br>
+    <div class="gallery">
+        <div class="gallery-wrapper">
+        <img src="img/img1.jpg" alt="Foto 1">
+        <img src="img/img2.jpg" alt="Foto 2">
+        <img src="img/img3.jpg" alt="Foto 3">
+        <img src="img/img4.jpg" alt="Foto 4">
+        <img src="img/img5.jpg" alt="Foto 5">
+        <img src="img/img6.jpg" alt="Foto 6">
+        <img src="img/img7.jpg" alt="Foto 7">
+        <img src="img/img8.jpg" alt="Foto 8">
+        <img src="img/img9.jpg" alt="Foto 9">
+        <img src="img/img10.jpg" alt="Foto 10">
+        <img src="img/img11.jpg" alt="Foto 11">
+        <img src="img/img12.jpg" alt="Foto 12">
+        
+        
+
+    </div>
+    </div>
+   
+
+    <h2>❤️ Estamos juntos há ❤️</h2>
+    <div class="timer" id="timer"></div><br><br>
+    <div class="message">💖Te amei desde o primeiro momento. 
+        O momento que ouvi a tua voz, o momento que te vi, o momento que você sorriu, o momento que me abraçou, o momento que me beijou, o momento que me quis, o momento que me teve, o momento que passamos juntos ou seja amo o momento de cada momento que vivemos.💖</div>
+    <script>
+        function updateTimer() {
+            const startDate = new Date('2021-12-03T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('timer').innerText = `${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
+        }
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-rain');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
