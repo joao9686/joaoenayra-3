@@ -7,34 +7,50 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;700&display=swap');
         body {
-            background-color: #87CEEB;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             font-family: 'Pacifico', cursive;
-
-
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
         .button {
-            
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: none;
+            background: linear-gradient(135deg, #ff6f61, #ff9a9e);
             border: none;
+            border-radius: 20px;
+            padding: 20px 40px;
             cursor: pointer;
             font-family: 'Pacifico', cursive;
-
             font-size: 30px;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
         }
         .heart {
             font-size: 48px;
             margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+        .heart:hover {
+            transform: scale(1.2);
         }
         .content {
             position: relative;
@@ -47,6 +63,7 @@
             pointer-events: none;
             z-index: 1;
             font-size: 24px;
+            color: #ff6f61;
         }
         @keyframes fall {
             to {
@@ -61,6 +78,7 @@
             <div class="heart">❤️</div>
             Clique aqui para abrir o presente
         </button>
+    </div>
     <script>
         // Script para chuva de corações
         function createHeart() {
@@ -69,6 +87,7 @@
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.color = `hsl(${Math.random() * 360}, 100%, 75%)`;
             document.body.appendChild(heart);
             
             setTimeout(() => heart.remove(), 5000);
