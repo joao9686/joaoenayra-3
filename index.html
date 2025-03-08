@@ -75,16 +75,17 @@
 <body>
     <div class="content">
         <button class="button" onclick="window.location.href='page2.html'">
-            <div class="heart">❤️</div>
+            <div class="heart">🌻</div>
             Clique aqui para abrir o presente
         </button>
     </div>
     <script>
         // Script para chuva de corações
+        const hearts = ['❤️', '💖', '🌻', '💓', '💗', '🌻', '💞','💛'];
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart-rain');
-            heart.innerHTML = '❤️';
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = Math.random() * 3 + 2 + 's';
             heart.style.color = `hsl(${Math.random() * 360}, 100%, 75%)`;
